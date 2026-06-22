@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: #030712;
+    --color-surface: #0F172A;
+    --color-elevated: #111827;
+    --color-border: #1F2937;
+    --color-primary: #6366F1;
+    --color-text-primary: #F8FAFC;
+    --color-text-secondary: #94A3B8;
+    --color-success: #22C55E;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    @apply min-h-screen antialiased font-sans selection:bg-[#6366F1]/30 selection:text-[#6366F1];
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom premium scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    @apply rounded-full hover:bg-gray-700 transition-colors;
+  }
+}
+
+@layer utilities {
+  /* Explicit design system color utilities to bypass Vite compile caching */
+  .bg-background {
+    background-color: var(--color-background);
+  }
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
+  .bg-elevated {
+    background-color: var(--color-elevated);
+  }
+  .border-border {
+    border-color: var(--color-border);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-textPrimary {
+    color: var(--color-text-primary);
+  }
+  .text-textSecondary {
+    color: var(--color-text-secondary);
+  }
+  .text-success {
+    color: var(--color-success);
+  }
+  .text-warning {
+    color: var(--color-warning);
+  }
+  .text-danger {
+    color: var(--color-danger);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-danger {
+    background-color: var(--color-danger);
+  }
+  .bg-success {
+    background-color: var(--color-success);
+  }
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+  .border-danger {
+    border-color: var(--color-danger);
+  }
+  .border-success {
+    border-color: var(--color-success);
+  }
+  .selection\:bg-primary\/30 {
+    selection-background-color: rgba(99, 102, 241, 0.3);
+  }
+  .selection\:text-primary {
+    selection-color: rgb(99, 102, 241);
+  }
+
+  /* Premium Glassmorphism */
+  .glass-panel {
+    background-color: rgba(15, 23, 42, 0.5);
+    @apply backdrop-blur-md border border-border shadow-lg shadow-black/20;
+  }
+  
+  .glass-panel-elevated {
+    @apply bg-[#161f33]/65 backdrop-blur-md border border-border shadow-xl shadow-black/30;
+  }
+
+  .glass-input {
+    @apply bg-[#0c101b]/50 border border-border focus:border-primary/80 focus:ring-1 focus:ring-primary/20 transition-all rounded-lg outline-none;
+  }
+
+  .glass-card {
+    background-color: rgba(15, 23, 42, 0.4);
+    @apply backdrop-blur-sm border border-border transition-all duration-300 hover:border-primary/40 hover:bg-surface/60 hover:shadow-xl hover:shadow-primary/5;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-400 to-indigo-400;
+  }
+
+  /* Shimmer Loading Animation class */
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      #0f172a 25%,
+      #1e293b 50%,
+      #0f172a 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Overlapping avatar stacks */
+.avatar-stack {
+  @apply flex -space-x-1.5 overflow-hidden;
+}
+
+.avatar-stack-item {
+  @apply inline-block h-6 w-6 rounded-full ring-2 ring-background text-[9px] font-bold text-white flex items-center justify-center uppercase transition-transform hover:translate-y-[-2px] hover:z-10 select-none;
+}
