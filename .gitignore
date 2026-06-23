@@ -96,3 +96,4 @@ firebase-adminsdk*.json
 *.tgz
 *.bak
 *.old
+VIBELOG.md
